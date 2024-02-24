@@ -45,3 +45,19 @@
 #contenedor-preguntas .pregunta {
     margin-bottom: 20px;
 }
+
+
+#bienvenida button {
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Color de fondo verde */
+    color: white; /* Texto blanco */
+    border: none; /* Sin bordes */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor en forma de mano */
+    transition: background-color 0.3s ease; /* Transición suave al cambiar de color */
+    font-size: 16px; /* Tamaño de fuente */
+}
+
+#bienvenida button:hover {
+    background-color: #367c39; /* Color de fondo más oscuro al pasar el ratón */
+}

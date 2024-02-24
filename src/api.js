@@ -23,7 +23,7 @@ var respuestasCorrectas = 0; // Nuevo: Contador de respuestas correctas
 function mostrarBienvenida() {
     var contenidoBienvenida = `<div id="bienvenida">
         <p>Bienvenido, si desea jugar pulse continuar</p>
-        <button onclick="iniciarJuego()">Jugar</button>
+        <button onclick="iniciarJuego()">Continuar</button>
     </div>`;
     $("#contenedor-preguntas").html(contenidoBienvenida);
 }
@@ -34,7 +34,7 @@ function iniciarJuego() {
 }
 
 function cargarPreguntas() {
-    $.get("https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple", function(data) {
+    $.get("https://opentdb.com/api.php?amount=10&category=27&difficulty=easy", function(data) {
         preguntas = data.results;
         preguntaActual = 0;
         respuestasCorrectas = 0; // Restablecer contador al iniciar
