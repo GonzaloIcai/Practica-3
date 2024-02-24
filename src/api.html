@@ -12,67 +12,7 @@
 <body>
     <div id="header"></div>
     <div id="contenedor-preguntas"></div>
-
-    <script>
-        // Función para asignar el evento de clic de manera segura
-        function asignarEventoApiRest() {
-            $("a[href='api.html']").off('click').on('click', function(e) {
-                e.preventDefault(); // Evita la navegación
-                cargarPreguntas(); // Función para cargar las preguntas de la API
-            });
-        }
-
-        $(function() {
-            // Carga el header y luego asigna el evento de clic
-            $("#header").load("header.html", function() {
-                asignarEventoApiRest();
-            });
-        });
-
-        var preguntas; // Almacena todas las preguntas
-        var preguntaActual = 0; // Índice de la pregunta actual
-
-        function cargarPreguntas() {
-            $.get("https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple", function(data) {
-                preguntas = data.results; // Guarda las preguntas
-                preguntaActual = 0; // Restablece al inicio cada vez que se cargan las preguntas
-                mostrarPregunta(preguntaActual); // Muestra la primera pregunta
-            });
-        }
-
-        function mostrarPregunta(index) {
-            const pregunta = preguntas[index];
-            let contenidoHtml = `<div class='pregunta'><h3>Pregunta ${index + 1}: ${pregunta.question}</h3><ul>`;
-            const respuestas = pregunta.incorrect_answers.slice(); // Copia las respuestas incorrectas
-            const correcta = pregunta.correct_answer;
-            respuestas.splice(Math.floor(Math.random() * (respuestas.length + 1)), 0, correcta); // Mezcla la correcta al azar
-            
-            respuestas.forEach((respuesta) => {
-                contenidoHtml += `<li onclick="seleccionarRespuesta('${respuesta.replace("'", "&#39;")}', '${correcta.replace("'", "&#39;")}', this)">${respuesta}</li>`;
-            });
-            
-            contenidoHtml += `</ul></div>`;
-            $("#contenedor-preguntas").html(contenidoHtml);
-        }
-
-        function seleccionarRespuesta(seleccionada, correcta, elemento) {
-            $("li").off("click"); // Deshabilita clics adicionales
-            if (seleccionada === correcta) {
-                $(elemento).css('color', 'green');
-                setTimeout(() => alert("Correcto!"), 100); // Espera un poco antes de mostrar alerta
-            } else {
-                $(elemento).css('color', 'red');
-                $(`li:contains('${correcta}')`).css('color', 'green');
-                setTimeout(() => alert("Incorrecto! La respuesta correcta era: " + correcta), 100);
-            }
-            
-            preguntaActual++;
-            if (preguntaActual < preguntas.length) {
-                setTimeout(() => mostrarPregunta(preguntaActual), 2000); // Espera 2 segundos antes de pasar a la siguiente pregunta
-            } else {
-                setTimeout(() => $("#contenedor-preguntas").html("<h2>Has completado todas las preguntas!</h2>"), 2000);
-            }
-        }
-    </script>
+    <script src="api.js"></script>
+    
 </body>
 </html>
