@@ -12,7 +12,7 @@ Con los nuevos conocimientos adquiridos sobre el lenguaje de programación Javas
 
 ### Función para llamar al fichero *header.html*
 
-![Función Header](assets/funcion_header.png)
+![Función Header](assets/función_header.png)
 
 De esta forma, además, es más fácil gestionar la página web y realizar cambios en el *header*, ya que solo lo tengo que cambiar desde un fichero concreto y no en cada uno de ellos.
 
@@ -22,12 +22,12 @@ Como se pedía para la práctica, he implementado un nuevo botón dentro de mi *
 Consiste en un juego de Trivial, el cual tú tienes que ir respondiendo a una serie de preguntas con múltiples opciones de respuesta, y deberás seleccionar la correcta.
 
 ### Imágenes de la API en acción:
-![API](api_1/header.png) 
+![API](assets/api_1.png) 
 
-![API](api_2/header.png) 
+![API](assets/api_2.png) 
 
-![API](api_3/header.png) 
+![API](assets/api_3.png) 
 
 Y por último, el juego te dirá cuántas preguntas has respondido correctamente.
 
-![API](api_4/header.png) 
+![API](assets/api_4.png) 
