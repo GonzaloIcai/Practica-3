@@ -1,12 +1,13 @@
 // Función para asignar el evento de clic de manera segura
 function asignarEventoApiRest() {
     $("a[href='api.html']").off('click').on('click', function(e) {
-        e.preventDefault(); // Evita la navegación
+        e.preventDefault(); 
     });
 }
 
+
+// Inicializa la carga del header y asigna eventos una vez cargado
 $(function() {
-    // Carga el header y luego asigna el evento de clic
     $("#header").load("header.html", function() {
         asignarEventoApiRest();
         mostrarBienvenida();
@@ -15,8 +16,8 @@ $(function() {
 
 
 
-var preguntas;
-var preguntaActual = 0;
+var preguntas; // Almacena las preguntas obtenidas de la API
+var preguntaActual = 0; // Índice de la pregunta actual
 var respuestasCorrectas = 0; // Nuevo: Contador de respuestas correctas
 
 // Nueva función para mostrar mensaje de bienvenida y botón de inicio
@@ -28,11 +29,13 @@ function mostrarBienvenida() {
     $("#contenedor-preguntas").html(contenidoBienvenida);
 }
 
+// Prepara el juego para empezar, cargando las preguntas
 function iniciarJuego() {
     $("#bienvenida").remove(); // Eliminar mensaje de bienvenida
     cargarPreguntas(); // Iniciar carga de preguntas
 }
 
+// Carga preguntas de la API y las muestra
 function cargarPreguntas() {
     $.get("https://opentdb.com/api.php?amount=10&category=27&difficulty=easy", function(data) {
         preguntas = data.results;
@@ -42,6 +45,7 @@ function cargarPreguntas() {
     });
 }
 
+// Muestra la pregunta actual con sus respuestas
 function mostrarPregunta(index) {
     const pregunta = preguntas[index];
     let contenidoHtml = `<div class='pregunta'><h3>Pregunta ${index + 1}: ${pregunta.question}</h3><ul>`;
@@ -57,6 +61,7 @@ function mostrarPregunta(index) {
     $("#contenedor-preguntas").html(contenidoHtml);
 }
 
+// Evalúa la respuesta seleccionada y muestra feedback visual (verde o roja)
 function seleccionarRespuesta(seleccionada, correcta, elemento) {
     $("li").off("click");
     if (seleccionada === correcta) {
@@ -70,10 +75,11 @@ function seleccionarRespuesta(seleccionada, correcta, elemento) {
     }
     
     preguntaActual++;
+    // Si quedan preguntas, muestra la siguiente; si no, muestra el resumen final
     if (preguntaActual < preguntas.length) {
         setTimeout(() => mostrarPregunta(preguntaActual), 2000);
     } else {
-        // Nuevo: Mostrar resumen de respuestas correctas al final
+        //Mostrar resumen de respuestas correctas al final (EXTRA)
         setTimeout(() => {
             $("#contenedor-preguntas").html(`<h2>Has completado todas las preguntas!</h2><p>Has obtenido ${respuestasCorrectas} /10 preguntas bien.</p>`);
         }, 2000);
